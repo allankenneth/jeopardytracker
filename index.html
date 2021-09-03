@@ -24,7 +24,7 @@
         <input type="text" name="playername" id="playername" placeholder="Player name">
         <input type="submit" name="playeradd" value="Add Player">
     </form>
-    <div><a class="" href="#" onclick="return nuke()">Reset</a></div>
+    <div><a class="" href="#" onclick="return resetscores()">Reset Scores</a> <a class="" href="#" onclick="return nuke()">Reset All</a></div>
 </div>
 <div class="row my-5 justify-content-md-center" id="app">
 </div>
@@ -176,6 +176,18 @@ function nuke() {
         return dbscores.bulkDocs(deleteDocs);
     });
     playersetup();
+    updatescores();
+}
+        
+function resetscores() {
+
+    dbscores.allDocs({include_docs: true}).then(allDocs => {
+    return allDocs.rows.map(row => {
+        return {_id: row.id, _rev: row.doc._rev, _deleted: true};
+    });
+    }).then(deleteDocs => {
+        return dbscores.bulkDocs(deleteDocs);
+    });
     updatescores();
 }
 
