@@ -8,3 +8,4 @@ Data never leaves your device as all data is stored and processed entirely on th
 
 *You can't share games among the group as tracking is limited to each device.*
 *I literally spent 4 hours on this, and only did it for my own usage and how I play Jeopardy! with my family, _so your milage may vary.*
+_Doesn't work on Firefox!_
