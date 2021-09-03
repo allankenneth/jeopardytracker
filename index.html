@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" 
+        rel="stylesheet" 
+        integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" 
+        crossorigin="anonymous">
+<style>
+    html,body {
+        background: #333;
+        color: #FFF;
+    }
+</style>
+<title>Simple Jeopardy! Score Tracker</title>
+</head>
+<body>
+<div class="container-fluid">
+<div class="row mt-5 justify-content-md-center">
+<div class="col-md-6 text-center">
+    <form action="#" id="addplayer">
+        <input type="text" name="playername" id="playername" placeholder="Player name">
+        <input type="submit" name="playeradd" value="Add Player">
+    </form>
+    <div><a class="" href="#" onclick="return nuke()">Reset</a></div>
+</div>
+<div class="row my-5 justify-content-md-center" id="app">
+</div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" 
+        integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" 
+        crossorigin="anonymous"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/pouchdb@7.2.1/dist/pouchdb.min.js"></script>
+
+<script>
+
+var dbscores = new PouchDB('jeopardyscores');
+var dbplayers = new PouchDB('jeopardyplayers');
+
+updatescores();
+
+playersetup();
+
+function playersetup () {
+
+    let playercontrols = ''; 
+
+    dbplayers.allDocs({include_docs: true, descending: true}, function(err, doc) {
+        doc.rows.forEach(function(e,index){
+
+            playercontrols += '<div class="col-md-2">';
+            playercontrols += '<div class="dropdown">';
+            playercontrols += '<button class="btn btn-secondary dropdown-toggle" type="button" id="';
+            playercontrols += e.doc['name'].toLowerCase();
+            playercontrols += 'scores" data-bs-toggle="dropdown" aria-expanded="false">';    
+            playercontrols += '' + e.doc['name'] + ' - Round 1';
+            playercontrols += '</button>';
+            playercontrols += '<ul class="dropdown-menu" aria-labelledby="' + e.doc['name'].toLowerCase() + 'scores">';
+            playercontrols += '<li><a class="dropdown-item" href="#200" onclick="return scoreme(\'' + e.doc['name'] + '\',200)">$200</a></li>';
+            playercontrols += '<li><a class="dropdown-item" href="#400" onclick="return scoreme(\'' + e.doc['name'] + '\',400)">$400</a></li>';
+            playercontrols += '<li><a class="dropdown-item" href="#600" onclick="return scoreme(\'' + e.doc['name'] + '\',600)">$600</a></li>';
+            playercontrols += '<li><a class="dropdown-item" href="#800" onclick="return scoreme(\'' + e.doc['name'] + '\',800)">$800</a></li>';
+            playercontrols += '<li><a class="dropdown-item" href="#1000" onclick="return scoreme(\'' + e.doc['name'] + '\',1000)">$1000</a></li>';
+            playercontrols += '</ul>';
+            playercontrols += '</div>';
+            playercontrols += '<div class="dropdown">';
+            playercontrols += '<button class="btn btn-secondary dropdown-toggle" type="button" id="';
+            playercontrols += e.doc['name'].toLowerCase();
+            playercontrols += 'scores" data-bs-toggle="dropdown" aria-expanded="false">';    
+            playercontrols += '' + e.doc['name'] + ' - Round 2';
+            playercontrols += '</button>';
+            playercontrols += '<ul class="dropdown-menu" aria-labelledby="' + e.doc['name'].toLowerCase() + 'scores">';
+            playercontrols += '<li><a class="dropdown-item" href="#200" onclick="return scoreme(\'' + e.doc['name'] + '\',400)">$400</a></li>';
+            playercontrols += '<li><a class="dropdown-item" href="#400" onclick="return scoreme(\'' + e.doc['name'] + '\',800)">$800</a></li>';
+            playercontrols += '<li><a class="dropdown-item" href="#600" onclick="return scoreme(\'' + e.doc['name'] + '\',1200)">$1200</a></li>';
+            playercontrols += '<li><a class="dropdown-item" href="#800" onclick="return scoreme(\'' + e.doc['name'] + '\',1600)">$1600</a></li>';
+            playercontrols += '<li><a class="dropdown-item" href="#1000" onclick="return scoreme(\'' + e.doc['name'] + '\',2000)">$2000</a></li>';
+            playercontrols += '</ul>';
+            playercontrols += '</div>';
+            playercontrols += '<div id="' + e.doc['name'].toLowerCase() + '"></div>';
+            playercontrols += '</div>';
+        });
+        document.getElementById('app').innerHTML = playercontrols;
+
+    });
+
+}
+
+function updatescores () {
+
+    dbplayers.allDocs({include_docs: true, descending: true}, function(err, doc) {
+    doc.rows.forEach(function(p,index){
+
+        let pname = p.doc['name'];
+        let pscore = 0;
+        let pcount = 0;
+
+        dbscores.allDocs({include_docs: true, descending: true}, function(err, doc) {
+
+            doc.rows.forEach(function(e,index){
+
+                if(e.doc['name'] == pname) {
+                    pscore = pscore + Number(e.doc['score']);
+                    pcount++;
+                }
+
+            });
+
+            pmessage = 'Count: ' + pcount + '<br>Money: $' + pscore;
+            messageid = pname.toLowerCase();
+            document.getElementById(messageid).innerHTML = pmessage;
+
+        }); // end of db.allDocs()     
+      
+    });
+    });
+
+}
+
+function scoreme (name,score) {	
+
+    rightnow = new Date().getTime();
+    var doc = {
+        '_id' : rightnow.toString(),
+        'date' : rightnow.toString(),
+        'name' : name,
+        'score' : score
+    };
+    dbscores.put(doc);
+    updatescores();
+    return false;
+
+}
+
+var form = document.querySelector('form');
+form.addEventListener("submit", function(e) {
+
+  e.preventDefault();
+  
+  var data = new FormData(form);
+  for (const [name,value] of data) {
+
+    rightnow = new Date().getTime();
+    var doc = {
+        '_id' : rightnow.toString(),
+        'date' : rightnow.toString(),
+        'name' : value
+    };
+    dbplayers.put(doc);
+
+  }
+  playersetup();
+  
+  form.reset();
+})
+
+
+function nuke() {
+
+    dbplayers.allDocs({include_docs: true}).then(allDocs => {
+    return allDocs.rows.map(row => {
+        return {_id: row.id, _rev: row.doc._rev, _deleted: true};
+    });
+    }).then(deleteDocs => {
+        return dbplayers.bulkDocs(deleteDocs);
+    });
+    dbscores.allDocs({include_docs: true}).then(allDocs => {
+    return allDocs.rows.map(row => {
+        return {_id: row.id, _rev: row.doc._rev, _deleted: true};
+    });
+    }).then(deleteDocs => {
+        return dbscores.bulkDocs(deleteDocs);
+    });
+    playersetup();
+    updatescores();
+}
+
+</script>
+</body>
+</html>
