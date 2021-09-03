@@ -143,14 +143,16 @@ form.addEventListener("submit", function(e) {
   
   var data = new FormData(form);
   for (const [name,value] of data) {
-
-    rightnow = new Date().getTime();
-    var doc = {
-        '_id' : rightnow.toString(),
-        'date' : rightnow.toString(),
-        'name' : value
-    };
-    dbplayers.put(doc);
+     
+    if(name = 'playername') {
+        rightnow = new Date().getTime();
+        var doc = {
+            '_id' : rightnow.toString(),
+            'date' : rightnow.toString(),
+            'name' : value
+        };
+        dbplayers.put(doc);
+    }
 
   }
   playersetup();
