@@ -110,7 +110,7 @@ function playersetup () {
     
     dbplayers.allDocs({include_docs: true, descending: false}, function(err, doc) {
         doc.rows.forEach(function(e,index){
-            playercontrols += '<div class="bg-dark px-3 py-1 mb-1">';
+            playercontrols += '<div class="bg-dark px-3 py-1 mb-1 rounded-3 shadow-sm">';
             playercontrols += '<strong>' + e.doc['name'] + '</strong> ';
             playercontrols += '<span id="' + e.doc['name'].toLowerCase() + '"></span>';
             playercontrols += '</div>';
