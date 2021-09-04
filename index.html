@@ -54,7 +54,7 @@ playersetup();
 
 function playersetup () {
 
-    let playercontrols = ''; 
+    let playercontrols = '';
 
     dbplayers.allDocs({include_docs: true, descending: true}, function(err, doc) {
         doc.rows.forEach(function(e,index){
@@ -117,7 +117,7 @@ function updatescores () {
 
             });
 
-            pmessage = '<span class="badge badge-dark">' + pcount + '</span> correct<br>$' + pscore;
+            pmessage = '<span class="badge badge-light">' + pcount + '</span> correct<br>$' + pscore;
             messageid = pname.toLowerCase();
             document.getElementById(messageid).innerHTML = pmessage;
 
