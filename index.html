@@ -105,7 +105,7 @@ function gridsetup () {
 
 function playersetup () {
 
-    let playercontrols = '<a class="" href="#" onclick="return resetscores()">Reset Scores</a> ';
+    let playercontrols = '';
     
     dbplayers.allDocs({include_docs: true, descending: false}, function(err, doc) {
         doc.rows.forEach(function(e,index){
@@ -115,7 +115,8 @@ function playersetup () {
             playercontrols += '</div>';
         });
         if(playercontrols) {
-            playercontrols += '<a class="" href="#" onclick="return nuke()">Reset All</a>'; 
+            playercontrols += '<a class="" href="#" onclick="return nuke()">Reset All</a> '; 
+            playercontrols += '<a class="" href="#" onclick="return resetscores()">Reset Scores</a>'
             document.getElementById('app').innerHTML = playercontrols;
         } else {
             document.getElementById('app').innerHTML = 'No players yet. Type a name in the box above and press the green "Add Player" button to get started.';
