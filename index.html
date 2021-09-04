@@ -114,7 +114,7 @@ function playersetup () {
     dbplayers.allDocs({include_docs: true, descending: true}, function(err, doc) {
         doc.rows.forEach(function(e,index){
             playercontrols += '<div class="bg-dark px-3 py-1">';
-            playercontrols += '<strong>' + e.doc['name'] + '</strong>';
+            playercontrols += '<strong>' + e.doc['name'] + '</strong> ';
             playercontrols += '<span id="' + e.doc['name'].toLowerCase() + '"></span>';
             playercontrols += '</div>';
         });
@@ -148,7 +148,7 @@ function updatescores () {
 
             });
 
-            pmessage = '' + pcount + ' correct for $' + pscore;
+            pmessage = '' + pcount + ' correct, $' + pscore;
             messageid = pname.toLowerCase();
             document.getElementById(messageid).innerHTML = pmessage;
 
