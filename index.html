@@ -27,10 +27,6 @@
         <input type="submit" name="playeradd" value="Add Player" class="btn btn-success">
     </div>
     </form>
-    <div>
-        <a class="" href="#" onclick="return resetscores()">Reset Scores</a> 
-        <a class="" href="#" onclick="return nuke()">Reset All</a>
-    </div>
 </div>
 </div>
 <div class="row my-5 justify-content-md-center">
@@ -109,8 +105,8 @@ function gridsetup () {
 
 function playersetup () {
 
-    let playercontrols = ''; 
-
+    let playercontrols = '<a class="" href="#" onclick="return resetscores()">Reset Scores</a> ';
+    
     dbplayers.allDocs({include_docs: true, descending: false}, function(err, doc) {
         doc.rows.forEach(function(e,index){
             playercontrols += '<div class="bg-dark px-3 py-1 mb-1">';
@@ -119,6 +115,7 @@ function playersetup () {
             playercontrols += '</div>';
         });
         if(playercontrols) {
+            playercontrols += '<a class="" href="#" onclick="return nuke()">Reset All</a>'; 
             document.getElementById('app').innerHTML = playercontrols;
         } else {
             document.getElementById('app').innerHTML = 'No players yet. Type a name in the box above and press the green "Add Player" button to get started.';
