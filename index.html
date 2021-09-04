@@ -20,20 +20,25 @@
 <div class="container-fluid">
 <div class="row mt-5 justify-content-md-center">
 <div class="col-md-6 text-center">
-<div class="bg-dark p-3">
+<div class="bg-dark p-3 rounded-3 shadow-sm">
     <form action="#" id="addplayer">
     <div class="input-group">
         <input type="text" name="playername" id="playername" placeholder="Player name" class="form-control">
         <input type="submit" name="playeradd" value="Add Player" class="btn btn-success">
     </div>
     </form>
-    <div><a class="" href="#" onclick="return resetscores()">Reset Scores</a> <a class="" href="#" onclick="return nuke()">Reset All</a></div>
+    <div>
+        <a class="" href="#" onclick="return resetscores()">Reset Scores</a> 
+        <a class="" href="#" onclick="return nuke()">Reset All</a>
+    </div>
 </div>
 </div>
 <div class="row my-5 justify-content-md-center">
     <div class="col-3 col-md-1 text-center" id="roundone"></div>
     <div class="col-3 col-md-1 text-center" id="roundtwo"></div>
-    <div class="col-6 col-md-3" id="app"></div>
+    <div class="col-6 col-md-3" id="app">
+        No players yet. Enter names in the box above and click the green "Add Player" button.
+    </div>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" 
