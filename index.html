@@ -117,7 +117,7 @@ function updatescores () {
 
             });
 
-            pmessage = '' + pcount + ' correct<br>$' + pscore;
+            pmessage = '<span class="badge badge-dark">' + pcount + '</span> correct<br>$' + pscore;
             messageid = pname.toLowerCase();
             document.getElementById(messageid).innerHTML = pmessage;
 
