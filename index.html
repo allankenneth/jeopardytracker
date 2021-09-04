@@ -65,7 +65,7 @@ function gridsetup () {
 
     rndone.forEach(function(e,index){
         dbplayers.allDocs({include_docs: true, descending: false}, function(err, doc) {
-            var plist = '';
+            var plist = 'Round 1<br>';
             doc.rows.forEach(function(p,index){
                 plist += '<li><a class="dropdown-item" href="#" onclick="return scoreme(\'' + p.doc['name'] + '\',' + e + ')">' + p.doc['name'] + '</a></li>';
             }); 
@@ -87,7 +87,7 @@ function gridsetup () {
     var plist = '';
     rndtwo.forEach(function(e,index){
         dbplayers.allDocs({include_docs: true, descending: false}, function(err, doc) {
-            var ptwolist = '';
+            var ptwolist = 'Round 2<br>';
             doc.rows.forEach(function(p,index){
                 ptwolist += '<li><a class="dropdown-item" href="#" onclick="return scoreme(\'' + p.doc['name'] + '\',' + e + ')">' + p.doc['name'] + '</a></li>';
             }); 
