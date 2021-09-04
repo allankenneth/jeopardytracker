@@ -19,12 +19,14 @@
 <body>
 <div class="container-fluid">
 <div class="row mt-5 justify-content-md-center">
-<div class="col-md-6 text-center bg-dark">
+<div class="col-md-6 text-center">
+<div class="bg-dark p-3">
     <form action="#" id="addplayer">
         <input type="text" name="playername" id="playername" placeholder="Player name">
-        <input type="submit" name="playeradd" value="Add Player">
+        <input type="submit" name="playeradd" value="Add Player" class="btn btn-success">
     </form>
     <div><a class="" href="#" onclick="return resetscores()">Reset Scores</a> <a class="" href="#" onclick="return nuke()">Reset All</a></div>
+</div>
 </div>
 <div class="row my-5 justify-content-md-center">
     <div class="col-3 col-md-1 text-center" id="roundone"></div>
