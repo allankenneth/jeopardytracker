@@ -19,7 +19,7 @@
 <body>
 <div class="container-fluid">
 <div class="row mt-5 justify-content-md-center">
-<div class="col-md-6 text-center">
+<div class="col-md-6 text-center bg-dark">
     <form action="#" id="addplayer">
         <input type="text" name="playername" id="playername" placeholder="Player name">
         <input type="submit" name="playeradd" value="Add Player">
@@ -51,7 +51,7 @@ gridsetup();
 
 function gridsetup () {
 
-    var gridcontrols = ''; 
+    var rocontrols = ''; 
      
     let rndone = [200,400,600,800,1000];
     let rndtwo = [400,800,1200,1600,2000];
@@ -62,17 +62,17 @@ function gridsetup () {
             doc.rows.forEach(function(p,index){
                 plist += '<li><a class="dropdown-item" href="#" onclick="return scoreme(\'' + p.doc['name'] + '\',' + e + ')">' + p.doc['name'] + '</a></li>';
             }); 
-            gridcontrols += '<div class="dropdown">';
-            gridcontrols += '<button class="btn btn-secondary dropdown-toggle" type="button" id="';
-            gridcontrols += e;
-            gridcontrols += 'folx" data-bs-toggle="dropdown" aria-expanded="false">';    
-            gridcontrols += '$' + e + '';
-            gridcontrols += '</button>';
-            gridcontrols += '<ul class="dropdown-menu" aria-labelledby="' + e + 'folx">';
-            gridcontrols += plist;
-            gridcontrols += '</ul>';
-            gridcontrols += '</div>';
-            document.getElementById('roundone').innerHTML = gridcontrols;
+            rocontrols += '<div class="dropdown">';
+            rocontrols += '<button class="btn btn-secondary dropdown-toggle" type="button" id="';
+            rocontrols += e;
+            rocontrols += 'folx" data-bs-toggle="dropdown" aria-expanded="false">';    
+            rocontrols += '$' + e + '';
+            rocontrols += '</button>';
+            rocontrols += '<ul class="dropdown-menu" aria-labelledby="' + e + 'folx">';
+            rocontrols += plist;
+            rocontrols += '</ul>';
+            rocontrols += '</div>';
+            document.getElementById('roundone').innerHTML = rocontrols;
         });
     });
 
