@@ -65,7 +65,7 @@ function gridsetup () {
 
     rndone.forEach(function(e,index){
         dbplayers.allDocs({include_docs: true, descending: false}, function(err, doc) {
-            var plist = 'Round 1<br>';
+            var plist = '';
             doc.rows.forEach(function(p,index){
                 plist += '<li><a class="dropdown-item" href="#" onclick="return scoreme(\'' + p.doc['name'] + '\',' + e + ')">' + p.doc['name'] + '</a></li>';
             }); 
@@ -79,7 +79,7 @@ function gridsetup () {
             rocontrols += plist;
             rocontrols += '</ul>';
             rocontrols += '</div>';
-            document.getElementById('roundone').innerHTML = rocontrols;
+            document.getElementById('roundone').innerHTML = 'Round 1 ' + rocontrols;
         });
     });
 
@@ -87,7 +87,7 @@ function gridsetup () {
     var plist = '';
     rndtwo.forEach(function(e,index){
         dbplayers.allDocs({include_docs: true, descending: false}, function(err, doc) {
-            var ptwolist = 'Round 2<br>';
+            var ptwolist = '';
             doc.rows.forEach(function(p,index){
                 ptwolist += '<li><a class="dropdown-item" href="#" onclick="return scoreme(\'' + p.doc['name'] + '\',' + e + ')">' + p.doc['name'] + '</a></li>';
             }); 
@@ -101,7 +101,7 @@ function gridsetup () {
             rtcontrols += ptwolist;
             rtcontrols += '</ul>';
             rtcontrols += '</div>';
-            document.getElementById('roundtwo').innerHTML = rtcontrols;
+            document.getElementById('roundtwo').innerHTML = 'Round 2' + rtcontrols;
         });
     });
     
