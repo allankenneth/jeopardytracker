@@ -120,7 +120,7 @@ function playersetup () {
             playercontrols += '<a class="btn btn-sm btn-secondary" href="#" onclick="return resetscores()">Reset Scores</a></div>'
             document.getElementById('app').innerHTML = playercontrols;
         } else {
-            document.getElementById('app').innerHTML = 'No players yet. Type a name in the box above and press the green "Add Player" button to get started.';
+            document.getElementById('app').innerHTML = '<div class="bg-dark p-2 rounded-3 shadow-sm">No players yet. Type a name in the box above and press the green "Add Player" button to get started.</div>';
         }
 
     });
