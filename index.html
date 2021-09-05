@@ -97,12 +97,18 @@ playersetup();
 
 gridsetup();
 
-function gridsetup () {
+var mode = getUrlParam('pre2001','Empty');
+
+function gridsetup (mode) {
 
     var rocontrols = ''; 
-     
-    let rndone = [200,400,600,800,1000];
-    let rndtwo = [400,800,1200,1600,2000];
+    if(mode == pre2001) {
+        let rndone = [100,200,300,400,500];
+        let rndtwo = [200,400,600,800,1000];
+    } else {
+        let rndone = [200,400,600,800,1000];
+        let rndtwo = [400,800,1200,1600,2000];   
+    }
 
     rndone.forEach(function(e,index){
         dbplayers.allDocs({include_docs: true, descending: false}, function(err, doc) {
@@ -275,7 +281,13 @@ function resetscores() {
     });
     updatescores();
 }
-
+function getUrlParam(parameter, defaultvalue){
+    var urlparameter = defaultvalue;
+    if(window.location.href.indexOf(parameter) > -1){
+        urlparameter = getUrlVars()[parameter];
+        }
+    return urlparameter;
+}
 </script>
 </body>
 </html>
