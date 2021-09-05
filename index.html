@@ -34,13 +34,41 @@
     <div class="col-3 col-md-2 text-center" id="roundone"></div>
     <div class="col-3 col-md-2 text-center" id="roundtwo"></div>
     <div class="col-6 col-md-4" id="app"></div>
-    <div class="col-12 col-md-4" id="tips">
-    <ul class="list">
-        <li class="list-item">There is no penalty for mistakes</li>   
-    </ul>
+</div>
+<div class="row">
+    <div class="col-md-4">
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#moreinfo">
+          More Info
+        </button>
     </div>
 </div>
 
+<div class="modal fade" id="moreinfo" tabindex="-1" aria-labelledby="moreinfoLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Simple Jeopardy! Score Tracker</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <p>Track a small group of people playing Jeopardy! where you can only add correctly answered 
+               questions (there's no subtraction for missed answers) and the associated dollar values.</p>
+
+            <p>Data never leaves your device as all data is stored and processed entirely on the client in 
+                vanilla javascript (and PouchDB to manage localstorage). If you dump your cache all the info 
+                will be erased. This is just meant to light-heartedly and temporarily track random Jeopardy! 
+                games among 3-4 people.</p>
+            <p>You can't share games among the group as tracking is limited to each device. I literally spent
+               a casual weekend on this, and only did it for my own usage and how I play Jeopardy! with my 
+               family, _so your milage may vary.</p>
+
+        </div>
+        <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+        </div>
+    </div>
+</div>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" 
         integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" 
         crossorigin="anonymous"></script>
