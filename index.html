@@ -21,7 +21,12 @@
 <div class="row mt-3 justify-content-md-center">
 <div class="col-md-8 text-center">
 <div class="bg-dark p-3 rounded-3 shadow-sm">
-    <div class="text-center">Simple Jeopardy! Score Tracker</div> 
+    <div class="text-center">
+        Simple Jeopardy! Score Tracker
+        <a href="#" class="btn btn-sm btn-dark" data-bs-toggle="modal" data-bs-target="#moreinfo">
+          More Info
+        </a>
+    </div> 
     <form action="#" id="addplayer">
     <div class="input-group">
         <input type="text" name="playername" id="playername" placeholder="Player name" class="form-control bg-dark text-white">
@@ -35,13 +40,7 @@
     <div class="col-3 col-md-2 text-center" id="roundtwo"></div>
     <div class="col-6 col-md-4" id="app"></div>
 </div>
-<div class="row">
-    <div class="col-md-4">
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#moreinfo">
-          More Info
-        </button>
-    </div>
-</div>
+
 
 <div class="modal fade" id="moreinfo" tabindex="-1" aria-labelledby="moreinfoLabel" aria-hidden="true">
     <div class="modal-dialog">
