@@ -34,6 +34,11 @@
     <div class="col-3 col-md-2 text-center" id="roundone"></div>
     <div class="col-3 col-md-2 text-center" id="roundtwo"></div>
     <div class="col-6 col-md-4" id="app"></div>
+    <div class="col-12 col-md-4" id="tips">
+    <ul class="list">
+        <li class="list-item">There is no penalty for mistakes</li>   
+    </ul>
+    </div>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" 
@@ -89,7 +94,7 @@ function gridsetup () {
                 ptwolist += '<li><a class="dropdown-item" href="#" onclick="return scoreme(\'' + p.doc['name'] + '\',' + e + ')">' + p.doc['name'] + '</a></li>';
             }); 
             rtcontrols += '<div class="dropdown mb-1">';
-            rtcontrols += '<button class="btn btn-secondary dropdown-toggle" type="button" id="';
+            rtcontrols += '<button class="btn btn-primary dropdown-toggle" type="button" id="';
             rtcontrols += e;
             rtcontrols += 'folx" data-bs-toggle="dropdown" aria-expanded="false">';    
             rtcontrols += '$' + e + '';
