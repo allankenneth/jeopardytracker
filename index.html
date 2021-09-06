@@ -46,8 +46,7 @@
         <div class="text-white bg-dark modal-body">
            <ul class="list-group bg-dark text-white mb-5">
               <li class="list-group-item bg-dark text-white">
-                You are meant to use this app in small groups <strong>while watching</strong> any episode of Jeopardy! after 2001 
-                (the dollar values are half previous to this year (first round $100, $200, etc).
+                You are meant to use this app in small groups <strong>while watching</strong> any episode of Jeopardy!
               </li>
               <li class="list-group-item bg-dark text-white">
                 A single person from your group should volunteer to be the "game tacker." Multiple people are free to track,
@@ -59,6 +58,10 @@
                 exposing the list of players. The tracker will then select the name of the first person
                 in the group to answer correctly, thereby incrementing how many answers that player has gotten, 
                 and how much those answers have been worth.
+              </li>
+              <li class="list-group-item bg-dark text-white">
+                If the game you are watching takes place before 2001, the dollar values are halfed (first round $100, $200, etc).
+                You can chose the "Pre-2001" option to change the mode to reduce the values for each round.
               </li>
               <li class="list-group-item bg-dark text-white">
                   There is no support for double Jeopardy! questions; though, I have an idea for an all-or-nothing approach
@@ -91,17 +94,17 @@
 var dbscores = new PouchDB('jeopardyscores');
 var dbplayers = new PouchDB('jeopardyplayers');
 
+let params = new URLSearchParams(location.search);
+const mode = params.get('pre2001');
+
 updatescores();
 
 playersetup();
 
-gridsetup();
-
-let params = new URLSearchParams(location.search);
-var mode = params.get('pre2001');
+gridsetup(mode);
 
 function gridsetup (mode) {
-
+    
     var rocontrols = ''; 
     if(mode == 1) {
         var rndone = [100,200,300,400,500];
@@ -168,6 +171,11 @@ function playersetup () {
         });
         if(playercontrols) {
             playercontrols += '<div class="mt-5"><a class="btn btn-sm btn-secondary" href="#" onclick="return nuke()">Reset All</a> '; 
+            if(mode == 1) {
+                playercontrols += '<a class="btn btn-sm btn-secondary" href="./">Post-2001</a> '; 
+            } else {
+                playercontrols += '<a class="btn btn-sm btn-secondary" href="./?pre2001=1">Pre-2001</a> '; 
+            }
             playercontrols += '<a class="btn btn-sm btn-secondary" href="#" onclick="return resetscores()">Reset Scores</a></div>'
             document.getElementById('app').innerHTML = playercontrols;
         } else {
@@ -244,7 +252,7 @@ form.addEventListener("submit", function(e) {
 
   }
   playersetup();
-  gridsetup();
+  gridsetup(mode);
   updatescores();
   
   form.reset();
