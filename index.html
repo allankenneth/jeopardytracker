@@ -97,7 +97,8 @@ playersetup();
 
 gridsetup();
 
-var mode = getUrlVars()["pre2001"];
+let params = new URLSearchParams(location.search);
+var mode = params.get('pre2001');
 
 function gridsetup (mode) {
 
@@ -281,13 +282,7 @@ function resetscores() {
     });
     updatescores();
 }
-function getUrlVars() {
-    var vars = {};
-    var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
-        vars[key] = value;
-    });
-    return vars;
-}
+
 </script>
 </body>
 </html>
